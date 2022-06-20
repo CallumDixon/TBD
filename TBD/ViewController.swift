@@ -13,16 +13,20 @@ class ViewController: NSViewController {
     //25mins = 1500secs
     //3mins = 300secs
    
-    let workDurationInMin : Double = 25
+    let workDurationInMin : Double = 5
     let breakDurationInMin : Double = 5
     let workDuration : Double
     let breakDuration : Double
     
-
+    
+    @IBOutlet weak var toggleButton: NSButton!
+    
     @IBAction func togglePressed(_ sender: Any) {
         //test
         if self.view.isInFullScreenMode {
             unLockScreen()
+            timer = Timer.scheduledTimer(timeInterval: workDuration, target: self, selector: #selector(fireRestEvent), userInfo: nil, repeats: false)
+            toggleButton.isHidden = true
         }
         
         else {
@@ -70,8 +74,8 @@ class ViewController: NSViewController {
     }
     
     @objc func fireWorkEvent() { //Unlocks the screen for the next 25 mins
-        self.unLockScreen()
-        timer = Timer.scheduledTimer(timeInterval: workDuration, target: self, selector: #selector(fireRestEvent), userInfo: nil, repeats: false)
+//        self.unLockScreen()
+        toggleButton.isHidden = false
     }
     
     func autoLock()async {

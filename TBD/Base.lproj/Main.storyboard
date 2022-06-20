@@ -709,13 +709,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2og-gW-ZLK">
-                                <rect key="frame" x="203" y="118" width="75" height="32"/>
+                            <button hidden="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2og-gW-ZLK">
+                                <rect key="frame" x="115" y="118" width="250" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="61" id="R4y-sQ-MZa"/>
                                     <constraint firstAttribute="height" constant="20" id="klH-JD-lyv"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mbf-Pd-FTF">
+                                <buttonCell key="cell" type="push" title="Go back to work! :)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mbf-Pd-FTF">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -729,6 +729,9 @@
                             <constraint firstItem="2og-gW-ZLK" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="S75-qH-tIY"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="toggleButton" destination="2og-gW-ZLK" id="TFM-gI-o8e"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
