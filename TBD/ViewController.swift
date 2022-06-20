@@ -48,13 +48,6 @@ class ViewController: NSViewController {
         self.view.exitFullScreenMode()
     }
     
-    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
-        timer = Timer()
-        workDuration = workDurationInMin * 1
-        breakDuration = breakDurationInMin * 1
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
     required init?(coder code: NSCoder) {
         timer = Timer()
         workDuration = workDurationInMin * 1
