@@ -8,6 +8,16 @@
 import Cocoa
 
 class ViewController: NSViewController {
+    
+    var timer: Timer
+    //25mins = 1500secs
+    //3mins = 300secs
+   
+    let workDurationInMin : Double = 25
+    let breakDurationInMin : Double = 5
+    let workDuration : Double
+    let breakDuration : Double
+    
 
     @IBAction func togglePressed(_ sender: Any) {
         //test
@@ -38,10 +48,41 @@ class ViewController: NSViewController {
         self.view.exitFullScreenMode()
     }
     
-    override func viewDidLoad() {
+    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
+        timer = Timer()
+        workDuration = workDurationInMin * 1
+        breakDuration = breakDurationInMin * 1
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder code: NSCoder) {
+        timer = Timer()
+        workDuration = workDurationInMin * 1
+        breakDuration = breakDurationInMin * 1
+        super.init(coder: code)
+    }
+    
+    // Load the application
+    override func viewDidLoad() { //Starting a timer for 25 mins, then fire the rest event
         super.viewDidLoad()
-
+        timer = Timer.scheduledTimer(timeInterval: workDuration, target: self, selector: #selector(fireRestEvent), userInfo: nil, repeats: false)
         // Do any additional setup after loading the view.
+    }
+    
+    //Auto locking the screen after 25 mins
+    
+    @objc func fireRestEvent() { //Locks the screen for 5 mins, then fire the work event
+        self.lockScreen()
+        timer = Timer.scheduledTimer(timeInterval: breakDuration, target: self, selector: #selector(fireWorkEvent), userInfo: nil, repeats: false)
+    }
+    
+    @objc func fireWorkEvent() { //Unlocks the screen for the next 25 mins
+        self.unLockScreen()
+        timer = Timer.scheduledTimer(timeInterval: workDuration, target: self, selector: #selector(fireRestEvent), userInfo: nil, repeats: false)
+    }
+    
+    func autoLock()async {
+        
     }
 
     override var representedObject: Any? {
