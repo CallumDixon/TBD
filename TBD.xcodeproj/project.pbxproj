@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		901DCE7E2861CA6F0052309B /* VideoCallChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901DCE7D2861CA6F0052309B /* VideoCallChecker.swift */; };
 		9020A0F3286080D300FEEACA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020A0F2286080D300FEEACA /* AppDelegate.swift */; };
 		9020A0F5286080D300FEEACA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020A0F4286080D300FEEACA /* ViewController.swift */; };
 		9020A0F7286080D400FEEACA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9020A0F6286080D400FEEACA /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		901DCE7D2861CA6F0052309B /* VideoCallChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCallChecker.swift; sourceTree = "<group>"; };
 		9020A0EF286080D300FEEACA /* TBD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TBD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9020A0F2286080D300FEEACA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9020A0F4286080D300FEEACA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				9020A0F6286080D400FEEACA /* Assets.xcassets */,
 				9020A0F8286080D400FEEACA /* Main.storyboard */,
 				9020A0FB286080D400FEEACA /* TBD.entitlements */,
+				901DCE7D2861CA6F0052309B /* VideoCallChecker.swift */,
 			);
 			path = TBD;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			files = (
 				9020A0F5286080D300FEEACA /* ViewController.swift in Sources */,
 				9020A0F3286080D300FEEACA /* AppDelegate.swift in Sources */,
+				901DCE7E2861CA6F0052309B /* VideoCallChecker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
