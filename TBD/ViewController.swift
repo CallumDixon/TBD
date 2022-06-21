@@ -6,17 +6,21 @@
 //
 
 import Cocoa
+import RxSwift
 
 class ViewController: NSViewController {
     
     var timer: Timer?
    
     let workDurationInMin : Double = 0.1
-    let breakDurationInMin : Double = 2.0
+    let breakDurationInMin : Double = 0.1
     let workDuration : Double
     let breakDuration : Double
     
     var countdown : Double
+    
+    let videoCallChecker = VideoCallChecker()
+    let disposeBag = DisposeBag()
     
     @IBOutlet weak var countdownLabel: NSTextField!
     
@@ -48,6 +52,7 @@ class ViewController: NSViewController {
     }
     
     func lockScreen() {
+        
         let presOptions: NSApplication.PresentationOptions = [
             .hideDock,
             //.disableForceQuit
@@ -122,7 +127,18 @@ class ViewController: NSViewController {
     }
     
     @objc func fireRestEvent() {
-        self.lockScreen()
+        
+        videoCallChecker.isInCall.subscribe(
+            onNext: { value in
+                if !value {
+                    self.lockScreen()
+                }
+                else{
+                    print("Zoom is currently open. Ill wait for it to close")
+                }
+            }
+        )
+        .disposed(by: disposeBag)
     }
     
     func autoLock()async {
