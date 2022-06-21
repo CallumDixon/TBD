@@ -12,7 +12,7 @@ class ViewController: NSViewController {
     var timer: Timer?
    
     let workDurationInMin : Double = 0.1
-    let breakDurationInMin : Double = 0.1
+    let breakDurationInMin : Double = 2.0
     let workDuration : Double
     let breakDuration : Double
     
@@ -67,11 +67,23 @@ class ViewController: NSViewController {
         
     }
     
+    func buildCountdownLabelMessage(countdown:Double) -> String {
+        let temp:Int = Int(countdown)
+        let mins:Int = temp / 60
+        let secs:Int = temp % 60
+        
+        let minsString:String = mins > 9 ? String(mins) : "0" + String(mins)
+        
+        let secsString:String = secs > 9 ? String(secs) : "0" + String(secs)
+        
+        let countdownLabelMessage = String( minsString + ":" + secsString)
+        
+        return countdownLabelMessage
+    }
+    
     @objc func updateTimer(){
         if(timer != nil){
-            print("Coming in: " + String(countdown))
-            
-            countdownLabel.stringValue = String(countdown)
+            countdownLabel.stringValue = buildCountdownLabelMessage(countdown:countdown)
             
             print(countdown < 1)
             
@@ -84,7 +96,6 @@ class ViewController: NSViewController {
                 countdown -= 1
             }
             
-            print("Leaving: " + String(countdown))
         }
     }
     
