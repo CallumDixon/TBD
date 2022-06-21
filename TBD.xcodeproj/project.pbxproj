@@ -92,7 +92,6 @@
 				186068E14F90868C046C5EEB /* Pods-TBDTests.debug.xcconfig */,
 				60D956E485C87AE6D333C800 /* Pods-TBDTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
