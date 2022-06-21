@@ -6,16 +6,19 @@
 //
 
 import Foundation
-import AVFoundation
-import CoreMediaIO
+import Cocoa
 
 class VideoCallChecker {
     
-    var isInCall: Bool
-    
-    init(){
-        isInCall = true
-        print("Checking video")
-        
+    public static func zoomIsOpen() -> Bool {
+        let running = NSWorkspace.shared.runningApplications
+        for app in running{
+            if let name = app.localizedName{
+                if name.contains("zoom"){
+                    return true
+                }
+            }
+        }
+        return false
     }
 }

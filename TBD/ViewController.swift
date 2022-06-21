@@ -27,8 +27,6 @@ class ViewController: NSViewController {
         unLockScreen()
     }
     
-    
-    
     required init?(coder code: NSCoder) {
         timer = Timer()
         workDuration = workDurationInMin * 60
@@ -79,10 +77,6 @@ class ViewController: NSViewController {
         
         countdownLabel.stringValue = String(countdown)
         countdown -= 1
-        
-       
-       
-        
     }
     
     func resetTimer(){
