@@ -27,8 +27,6 @@ class ViewController: NSViewController {
         unLockScreen()
     }
     
-    
-    
     required init?(coder code: NSCoder) {
         timer = Timer()
         workDuration = workDurationInMin * 60
@@ -54,7 +52,7 @@ class ViewController: NSViewController {
     func lockScreen() {
         let presOptions: NSApplication.PresentationOptions = [
             .hideDock,
-            .disableForceQuit
+            //.disableForceQuit
             
         ]
         
@@ -72,17 +70,19 @@ class ViewController: NSViewController {
     }
     
     @objc func updateTimer(){
+
         
-        if(countdown == 0){
+        print(countdown)
+        print(countdown < 1)
+        
+        if(countdown == 0.0){
+            countdownLabel.stringValue = String(countdown)
             timer.invalidate()
         }
         
         countdownLabel.stringValue = String(countdown)
         countdown -= 1
-        
-       
-       
-        
+    
     }
     
     func resetTimer(){
