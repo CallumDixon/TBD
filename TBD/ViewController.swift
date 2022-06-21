@@ -9,12 +9,10 @@ import Cocoa
 
 class ViewController: NSViewController {
     
-    var timer: Timer
-    //25mins = 1500secs
-    //3mins = 300secs
+    var timer: Timer?
    
     let workDurationInMin : Double = 0.1
-    let breakDurationInMin : Double = 0.1
+    let breakDurationInMin : Double = 2.0
     let workDuration : Double
     let breakDuration : Double
     
@@ -52,7 +50,7 @@ class ViewController: NSViewController {
     func lockScreen() {
         let presOptions: NSApplication.PresentationOptions = [
             .hideDock,
-            .disableForceQuit
+            //.disableForceQuit
             
         ]
         
@@ -69,14 +67,38 @@ class ViewController: NSViewController {
         
     }
     
+    func buildCountdownLabelMessage(countdown:Double) -> String {
+        let temp:Int = Int(countdown)
+        let mins:Int = temp / 60
+        let secs:Int = temp % 60
+        
+        let minsString:String = mins > 9 ? String(mins) : "0" + String(mins)
+        
+
+        let secsString:String = secs > 9 ? String(secs) : "0" + String(secs)
+        
+        let countdownLabelMessage = String( minsString + ":" + secsString)
+        
+        return countdownLabelMessage
+    }
+    
     @objc func updateTimer(){
-        
-        if(countdown == 0){
-            timer.invalidate()
+        if(timer != nil){
+            countdownLabel.stringValue = buildCountdownLabelMessage(countdown:countdown)
+            
+            print(countdown < 1)
+            
+            if(countdown  < 1){
+                countdownLabel.stringValue = String(countdown)
+                timer = nil
+                toggleButton.isHidden = false
+            }
+            else{
+                countdown -= 1
+            }
+            
         }
-        
-        countdownLabel.stringValue = String(countdown)
-        countdown -= 1
+
     }
     
     func resetTimer(){
@@ -93,22 +115,14 @@ class ViewController: NSViewController {
     }
     
     // Load the application
-    override func viewDidLoad() { //Starting a timer for 25 mins, then fire the rest event
+    override func viewDidLoad() {
         super.viewDidLoad()
         timer = Timer.scheduledTimer(timeInterval: workDuration, target: self, selector: #selector(fireRestEvent), userInfo: nil, repeats: false)
         // Do any additional setup after loading the view.
     }
     
-    //Auto locking the screen after 25 mins
-    
-    @objc func fireRestEvent() { //Locks the screen for 5 mins, then fire the work event
+    @objc func fireRestEvent() {
         self.lockScreen()
-        timer = Timer.scheduledTimer(timeInterval: breakDuration, target: self, selector: #selector(fireWorkEvent), userInfo: nil, repeats: false)
-    }
-    
-    @objc func fireWorkEvent() { //Unlocks the screen for the next 25 mins
-//        self.unLockScreen()
-        toggleButton.isHidden = false
     }
     
     func autoLock()async {
