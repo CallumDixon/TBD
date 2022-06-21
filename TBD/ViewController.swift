@@ -13,11 +13,29 @@ class ViewController: NSViewController {
     //25mins = 1500secs
     //3mins = 300secs
    
-    let workDurationInMin : Double = 5
-    let breakDurationInMin : Double = 5
+    let workDurationInMin : Double = 0.1
+    let breakDurationInMin : Double = 0.1
     let workDuration : Double
     let breakDuration : Double
     
+    var countdown : Double
+    
+    @IBOutlet weak var countdownLabel: NSTextField!
+    
+    
+    @IBAction func overrideButton(_ sender: Any) {
+        unLockScreen()
+    }
+    
+    
+    
+    required init?(coder code: NSCoder) {
+        timer = Timer()
+        workDuration = workDurationInMin * 60
+        breakDuration = breakDurationInMin * 60
+        countdown = breakDuration
+        super.init(coder: code)
+    }
     
     @IBOutlet weak var toggleButton: NSButton!
     
@@ -28,7 +46,6 @@ class ViewController: NSViewController {
             timer = Timer.scheduledTimer(timeInterval: workDuration, target: self, selector: #selector(fireRestEvent), userInfo: nil, repeats: false)
             toggleButton.isHidden = true
         }
-        
         else {
             lockScreen()
         }
@@ -37,6 +54,8 @@ class ViewController: NSViewController {
     func lockScreen() {
         let presOptions: NSApplication.PresentationOptions = [
             .hideDock,
+            .disableForceQuit
+            
         ]
         
         let optionsDictionary = [NSView.FullScreenModeOptionKey.fullScreenModeApplicationPresentationOptions: presOptions]
@@ -45,18 +64,38 @@ class ViewController: NSViewController {
             NSApp.setActivationPolicy(.accessory)
             self.view.enterFullScreenMode(screen, withOptions: optionsDictionary)
         }
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        
+        countdownLabel.isHidden = false
+        
+    }
+    
+    @objc func updateTimer(){
+        
+        if(countdown == 0){
+            timer.invalidate()
+        }
+        
+        countdownLabel.stringValue = String(countdown)
+        countdown -= 1
+        
+       
+       
+        
+    }
+    
+    func resetTimer(){
+        countdownLabel.stringValue = ""
+        countdown = breakDurationInMin * 60
+        countdownLabel.isHidden = true
     }
     
     func unLockScreen() {
         NSApp.setActivationPolicy(.regular)
         self.view.exitFullScreenMode()
-    }
-    
-    required init?(coder code: NSCoder) {
-        timer = Timer()
-        workDuration = workDurationInMin * 1
-        breakDuration = breakDurationInMin * 1
-        super.init(coder: code)
+        
+        resetTimer()
     }
     
     // Load the application

@@ -723,13 +723,44 @@
                                     <action selector="togglePressed:" target="XfG-lQ-9wD" id="Qo5-I5-Wme"/>
                                 </connections>
                             </button>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Cs-dw-2MY">
+                                <rect key="frame" x="165" y="87" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="6MX-Vr-BIy"/>
+                                    <constraint firstAttribute="height" constant="30" id="mq2-ZL-rzM"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" borderStyle="bezel" drawsBackground="YES" id="IID-F8-SDm">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="systemPurpleColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YDc-Q4-Dys">
+                                <rect key="frame" x="371" y="18" width="98" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="mgI-2Z-spU"/>
+                                    <constraint firstAttribute="width" constant="84" id="zO5-U3-XFU"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="OVERRIDE" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Gw3-Ld-BA1">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="overrideButton:" target="XfG-lQ-9wD" id="13B-XW-HaC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="4Cs-dw-2MY" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" constant="30" id="3fv-03-9rC"/>
                             <constraint firstItem="2og-gW-ZLK" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="7Ur-rw-8Tf"/>
+                            <constraint firstItem="4Cs-dw-2MY" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="EK0-Tg-sJS"/>
                             <constraint firstItem="2og-gW-ZLK" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="S75-qH-tIY"/>
+                            <constraint firstItem="YDc-Q4-Dys" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" constant="180" id="k9r-yX-gae"/>
+                            <constraint firstItem="YDc-Q4-Dys" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" constant="100" id="xQH-OQ-vHK"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="countdownLabel" destination="4Cs-dw-2MY" id="MNl-Ne-pRy"/>
                         <outlet property="toggleButton" destination="2og-gW-ZLK" id="TFM-gI-o8e"/>
                     </connections>
                 </viewController>
