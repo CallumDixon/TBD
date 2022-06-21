@@ -9,9 +9,7 @@ import Cocoa
 
 class ViewController: NSViewController {
     
-    var timer: Timer
-    //25mins = 1500secs
-    //3mins = 300secs
+    var timer: Timer?
    
     let workDurationInMin : Double = 0.1
     let breakDurationInMin : Double = 0.1
@@ -70,19 +68,24 @@ class ViewController: NSViewController {
     }
     
     @objc func updateTimer(){
-
-        
-        print(countdown)
-        print(countdown < 1)
-        
-        if(countdown == 0.0){
+        if(timer != nil){
+            print("Coming in: " + String(countdown))
+            
             countdownLabel.stringValue = String(countdown)
-            timer.invalidate()
+            
+            print(countdown < 1)
+            
+            if(countdown  < 1){
+                countdownLabel.stringValue = String(countdown)
+                timer = nil
+                toggleButton.isHidden = false
+            }
+            else{
+                countdown -= 1
+            }
+            
+            print("Leaving: " + String(countdown))
         }
-        
-        countdownLabel.stringValue = String(countdown)
-        countdown -= 1
-    
     }
     
     func resetTimer(){
@@ -99,22 +102,14 @@ class ViewController: NSViewController {
     }
     
     // Load the application
-    override func viewDidLoad() { //Starting a timer for 25 mins, then fire the rest event
+    override func viewDidLoad() {
         super.viewDidLoad()
         timer = Timer.scheduledTimer(timeInterval: workDuration, target: self, selector: #selector(fireRestEvent), userInfo: nil, repeats: false)
         // Do any additional setup after loading the view.
     }
     
-    //Auto locking the screen after 25 mins
-    
-    @objc func fireRestEvent() { //Locks the screen for 5 mins, then fire the work event
+    @objc func fireRestEvent() {
         self.lockScreen()
-        timer = Timer.scheduledTimer(timeInterval: breakDuration, target: self, selector: #selector(fireWorkEvent), userInfo: nil, repeats: false)
-    }
-    
-    @objc func fireWorkEvent() { //Unlocks the screen for the next 25 mins
-//        self.unLockScreen()
-        toggleButton.isHidden = false
     }
     
     func autoLock()async {
