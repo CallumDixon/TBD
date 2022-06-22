@@ -6,41 +6,55 @@
 //
 
 import Cocoa
+import RxSwift
 
 class ViewController: NSViewController {
     
     var timer: Timer?
    
     let workDurationInMin : Double = 0.1
-    let breakDurationInMin : Double = 2.0
+    let breakDurationInMin : Double = 0.05
     let workDuration : Double
     let breakDuration : Double
     
+    var isInFullScreen : Bool = false
     var countdown : Double
     
+    let videoCallChecker = VideoCallChecker()
+    let disposeBag = DisposeBag()
+    
     @IBOutlet weak var countdownLabel: NSTextField!
-    
-    
-    @IBAction func overrideButton(_ sender: Any) {
-        unLockScreen()
-    }
+    @IBOutlet weak var toggleButton: NSButton!
     
     required init?(coder code: NSCoder) {
-        timer = Timer()
+        self.timer = Timer()
         workDuration = workDurationInMin * 60
         breakDuration = breakDurationInMin * 60
         countdown = breakDuration
         super.init(coder: code)
     }
     
-    @IBOutlet weak var toggleButton: NSButton!
+    // Load the application
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.timer = Timer.scheduledTimer(timeInterval: workDuration, target: self, selector: #selector(fireRestEvent), userInfo: nil, repeats: false)
+        // Do any additional setup after loading the view.
+    }
+    
+    override var representedObject: Any? {
+        didSet {
+        // Update the view, if already loaded.
+        }
+    }
+    
+    @IBAction func overrideButton(_ sender: Any) {
+        unLockScreen()
+    }
     
     @IBAction func togglePressed(_ sender: Any) {
-        //test
-        if self.view.isInFullScreenMode {
+        if isInFullScreen {
             unLockScreen()
-            timer = Timer.scheduledTimer(timeInterval: workDuration, target: self, selector: #selector(fireRestEvent), userInfo: nil, repeats: false)
-            toggleButton.isHidden = true
+            self.timer = Timer.scheduledTimer(timeInterval: workDuration, target: self, selector: #selector(fireRestEvent), userInfo: nil, repeats: false)
         }
         else {
             lockScreen()
@@ -56,81 +70,93 @@ class ViewController: NSViewController {
         
         let optionsDictionary = [NSView.FullScreenModeOptionKey.fullScreenModeApplicationPresentationOptions: presOptions]
                 
+        isInFullScreen = true
         for screen in NSScreen.screens {
             NSApp.setActivationPolicy(.accessory)
             self.view.enterFullScreenMode(screen, withOptions: optionsDictionary)
         }
         
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        
-        countdownLabel.isHidden = false
+        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
     }
     
+    func unLockScreen() {
+        isInFullScreen = false
+        NSApp.setActivationPolicy(.regular)
+        self.view.exitFullScreenMode()
+        toggleButton.isHidden = true
+        
+        resetTimer()
+    }
+   
+    @objc func updateTimer(){
+        if(self.timer != nil){
+            countdownLabel.stringValue = buildCountdownLabelMessage(countdown:countdown)
+            
+            print(countdown < 1)
+            
+            if(countdown  < 1) {
+                //countdownLabel.stringValue = String(countdown)
+                self.timer?.invalidate()
+                self.timer = nil
+                self.timer?.replaceValue(at: 0, inPropertyWithKey: "repeats", withValue: false)
+                toggleButton.isHidden = false
+            }
+            else {
+                countdown -= 1
+            }
+            countdownLabel.isHidden = false
+        }
+        
+      
+
+    }
+    
+    func resetTimer(){
+        countdownLabel.stringValue = ""
+        countdown = breakDuration
+        countdownLabel.isHidden = true
+    }
+    
+
+    
+    @objc func fireRestEvent() {
+        
+        videoCallChecker.isInCall.subscribe(
+            onNext: { value in
+                if !value {
+                    self.lockScreen()
+                }
+                else{
+                    print("Zoom is currently open. Ill wait for it to close")
+                }
+            }
+        )
+        .disposed(by: disposeBag)
+    }
+    
+    func autoLock()async {
+        
+    }
+   
     func buildCountdownLabelMessage(countdown:Double) -> String {
+        
+        if(countdown < 0){
+            return "Invalid value"
+            
+        }
         let temp:Int = Int(countdown)
         let mins:Int = temp / 60
         let secs:Int = temp % 60
         
         let minsString:String = mins > 9 ? String(mins) : "0" + String(mins)
         
+
         let secsString:String = secs > 9 ? String(secs) : "0" + String(secs)
         
         let countdownLabelMessage = String( minsString + ":" + secsString)
         
         return countdownLabelMessage
-    }
-    
-    @objc func updateTimer(){
-        if(timer != nil){
-            countdownLabel.stringValue = buildCountdownLabelMessage(countdown:countdown)
-            
-            print(countdown < 1)
-            
-            if(countdown  < 1){
-                countdownLabel.stringValue = String(countdown)
-                timer = nil
-                toggleButton.isHidden = false
-            }
-            else{
-                countdown -= 1
-            }
-            
-        }
-    }
-    
-    func resetTimer(){
-        countdownLabel.stringValue = ""
-        countdown = breakDurationInMin * 60
-        countdownLabel.isHidden = true
-    }
-    
-    func unLockScreen() {
-        NSApp.setActivationPolicy(.regular)
-        self.view.exitFullScreenMode()
-        
-        resetTimer()
-    }
-    
-    // Load the application
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        timer = Timer.scheduledTimer(timeInterval: workDuration, target: self, selector: #selector(fireRestEvent), userInfo: nil, repeats: false)
-        // Do any additional setup after loading the view.
-    }
-    
-    @objc func fireRestEvent() {
-        self.lockScreen()
-    }
-    
-    func autoLock()async {
-        
-    }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
     }
 
 

@@ -6,16 +6,50 @@
 //
 
 import Foundation
-import AVFoundation
-import CoreMediaIO
+import Cocoa
+import RxSwift
+import RxRelay
 
 class VideoCallChecker {
     
-    var isInCall: Bool
+    let isInCall = BehaviorRelay<Bool>(value: false)
+    let center = NSWorkspace.shared.notificationCenter
     
     init(){
-        isInCall = true
-        print("Checking video")
         
+        searchForZoom()
+        
+        center.addObserver(forName: NSWorkspace.didLaunchApplicationNotification,object: nil, queue: OperationQueue.main) { (notification: Notification) in
+            if let app = notification.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication {
+                if let name = app.localizedName{
+                    if name.contains("zoom"){
+                        self.isInCall.accept(true)
+                    }
+                }
+
+            }
+        }
+        
+        center.addObserver(forName: NSWorkspace.didTerminateApplicationNotification, object: nil, queue: OperationQueue.main) {(notification: Notification) in
+            if let app = notification.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication {
+                if let name = app.localizedName{
+                    if name.contains("zoom"){
+                        self.isInCall.accept(false)
+                    }
+                }
+            }
+        }
+    }
+    
+    func searchForZoom() {
+        
+        for app in NSWorkspace.shared.runningApplications{
+            
+            if let name = app.localizedName{
+                if name.contains("zoom"){
+                    self.isInCall.accept(true)
+                }
+            }
+        }
     }
 }
