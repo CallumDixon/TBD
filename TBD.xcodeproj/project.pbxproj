@@ -42,7 +42,7 @@
 		186068E14F90868C046C5EEB /* Pods-TBDTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBDTests.debug.xcconfig"; path = "Target Support Files/Pods-TBDTests/Pods-TBDTests.debug.xcconfig"; sourceTree = "<group>"; };
 		60D956E485C87AE6D333C800 /* Pods-TBDTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBDTests.release.xcconfig"; path = "Target Support Files/Pods-TBDTests/Pods-TBDTests.release.xcconfig"; sourceTree = "<group>"; };
 		901DCE7D2861CA6F0052309B /* VideoCallChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCallChecker.swift; sourceTree = "<group>"; };
-		9020A0EF286080D300FEEACA /* TBD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TBD.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9020A0EF286080D300FEEACA /* Aria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aria.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9020A0F2286080D300FEEACA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9020A0F4286080D300FEEACA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9020A0F6286080D400FEEACA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 		9020A0F0286080D300FEEACA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9020A0EF286080D300FEEACA /* TBD.app */,
+				9020A0EF286080D300FEEACA /* Aria.app */,
 				9020A100286080D400FEEACA /* TBDTests.xctest */,
 				9020A10A286080D400FEEACA /* TBDUITests.xctest */,
 			);
@@ -159,9 +159,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9020A0EE286080D300FEEACA /* TBD */ = {
+		9020A0EE286080D300FEEACA /* Aria */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9020A114286080D400FEEACA /* Build configuration list for PBXNativeTarget "TBD" */;
+			buildConfigurationList = 9020A114286080D400FEEACA /* Build configuration list for PBXNativeTarget "Aria" */;
 			buildPhases = (
 				9DF5C2E6D2E8F41D12444DE9 /* [CP] Check Pods Manifest.lock */,
 				9020A0EB286080D300FEEACA /* Sources */,
@@ -173,9 +173,9 @@
 			);
 			dependencies = (
 			);
-			name = TBD;
+			name = Aria;
 			productName = TBD;
-			productReference = 9020A0EF286080D300FEEACA /* TBD.app */;
+			productReference = 9020A0EF286080D300FEEACA /* Aria.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9020A0FF286080D400FEEACA /* TBDTests */ = {
@@ -252,7 +252,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9020A0EE286080D300FEEACA /* TBD */,
+				9020A0EE286080D300FEEACA /* Aria */,
 				9020A0FF286080D400FEEACA /* TBDTests */,
 				9020A109286080D400FEEACA /* TBDUITests */,
 			);
@@ -399,12 +399,12 @@
 /* Begin PBXTargetDependency section */
 		9020A102286080D400FEEACA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9020A0EE286080D300FEEACA /* TBD */;
+			target = 9020A0EE286080D300FEEACA /* Aria */;
 			targetProxy = 9020A101286080D400FEEACA /* PBXContainerItemProxy */;
 		};
 		9020A10C286080D400FEEACA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9020A0EE286080D300FEEACA /* TBD */;
+			target = 9020A0EE286080D300FEEACA /* Aria */;
 			targetProxy = 9020A10B286080D400FEEACA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -540,6 +540,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = TBD/TBD.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -570,6 +571,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = TBD/TBD.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -680,7 +682,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9020A114286080D400FEEACA /* Build configuration list for PBXNativeTarget "TBD" */ = {
+		9020A114286080D400FEEACA /* Build configuration list for PBXNativeTarget "Aria" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9020A115286080D400FEEACA /* Debug */,
