@@ -40,7 +40,6 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.timer = Timer.scheduledTimer(timeInterval: workDuration, target: self, selector: #selector(fireRestEvent), userInfo: nil, repeats: false)
-        // Do any additional setup after loading the view.
     }
     
     override var representedObject: Any? {
