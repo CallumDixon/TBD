@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -749,12 +749,26 @@
                                     <action selector="overrideButton:" target="XfG-lQ-9wD" id="13B-XW-HaC"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7qP-NE-oR2">
+                                <rect key="frame" x="8" y="218" width="114" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="SSm-8Y-wFa"/>
+                                    <constraint firstAttribute="height" constant="20" id="qMv-Ux-ogB"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="zwN-4O-1GO"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Analytics" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="byc-WZ-o5c">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="4Cs-dw-2MY" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" constant="30" id="3fv-03-9rC"/>
                             <constraint firstItem="2og-gW-ZLK" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="7Ur-rw-8Tf"/>
                             <constraint firstItem="4Cs-dw-2MY" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="EK0-Tg-sJS"/>
+                            <constraint firstItem="7qP-NE-oR2" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" constant="-100" id="Fj0-Yk-VyU"/>
                             <constraint firstItem="2og-gW-ZLK" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="S75-qH-tIY"/>
+                            <constraint firstItem="7qP-NE-oR2" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" constant="-175" id="eMX-Wg-RDM"/>
                             <constraint firstItem="YDc-Q4-Dys" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" constant="180" id="k9r-yX-gae"/>
                             <constraint firstItem="YDc-Q4-Dys" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" constant="100" id="xQH-OQ-vHK"/>
                         </constraints>
@@ -768,6 +782,19 @@
                 <userDefaultsController representsSharedInstance="YES" id="cb3-24-sxY"/>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
+        </scene>
+        <!--UserDataViewController-->
+        <scene sceneID="CXA-j8-rKC">
+            <objects>
+                <viewController title="UserDataViewController" id="cDE-l9-GU3" sceneMemberID="viewController">
+                    <view key="view" id="glz-dE-V7y">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="ehr-QT-g5R" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="587" y="670"/>
         </scene>
     </scenes>
 </document>
