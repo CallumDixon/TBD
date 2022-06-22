@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="XfG-lQ-9wD">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -674,7 +675,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="TBD" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Aria" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -684,7 +685,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Aria" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -704,80 +705,68 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="TBD" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="XfG-lQ-9wD" customClass="ViewController" customModule="Aria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button hidden="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2og-gW-ZLK">
-                                <rect key="frame" x="115" y="118" width="260" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="R4y-sQ-MZa"/>
-                                    <constraint firstAttribute="height" constant="20" id="klH-JD-lyv"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="Go back to work! :)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mbf-Pd-FTF">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="togglePressed:" target="XfG-lQ-9wD" id="Qo5-I5-Wme"/>
-                                </connections>
-                            </button>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Cs-dw-2MY">
-                                <rect key="frame" x="165" y="87" width="150" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="6MX-Vr-BIy"/>
-                                    <constraint firstAttribute="height" constant="40" id="mq2-ZL-rzM"/>
-                                </constraints>
-                                <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" borderStyle="bezel" alignment="center" drawsBackground="YES" id="IID-F8-SDm">
-                                    <font key="font" textStyle="largeTitle" name=".SFNS-Regular"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YDc-Q4-Dys">
-                                <rect key="frame" x="371" y="18" width="98" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="mgI-2Z-spU"/>
-                                    <constraint firstAttribute="width" constant="84" id="zO5-U3-XFU"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="OVERRIDE" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Gw3-Ld-BA1">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="overrideButton:" target="XfG-lQ-9wD" id="13B-XW-HaC"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7qP-NE-oR2">
-                                <rect key="frame" x="13" y="223" width="114" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="SSm-8Y-wFa"/>
-                                    <constraint firstAttribute="height" constant="20" id="qMv-Ux-ogB"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="zwN-4O-1GO"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="Analytics" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="byc-WZ-o5c">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <segue destination="LLc-hZ-w6Z" kind="show" id="2PY-nG-jCF"/>
-                                </connections>
-                            </button>
+                            <box boxType="custom" cornerRadius="4" title="Box" id="y2b-yZ-P1q">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <view key="contentView" id="BsG-xb-qb3">
+                                    <rect key="frame" x="1" y="1" width="478" height="268"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YDc-Q4-Dys">
+                                            <rect key="frame" x="-1" y="235" width="98" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="OVERRIDE" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Gw3-Ld-BA1">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="overrideButton:" target="XfG-lQ-9wD" id="13B-XW-HaC"/>
+                                            </connections>
+                                        </button>
+                                        <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2og-gW-ZLK">
+                                            <rect key="frame" x="172" y="67" width="135" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="3VI-Bb-hYb"/>
+                                                <constraint firstAttribute="width" constant="121" id="XhS-df-Leq"/>
+                                            </constraints>
+                                            <buttonCell key="cell" type="push" title="Return to screen" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mbf-Pd-FTF">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="togglePressed:" target="XfG-lQ-9wD" id="Qo5-I5-Wme"/>
+                                            </connections>
+                                        </button>
+                                        <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Cs-dw-2MY">
+                                            <rect key="frame" x="89" y="104" width="300" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="Def-lb-LZk"/>
+                                                <constraint firstAttribute="width" constant="150" id="Yom-7g-qwm"/>
+                                            </constraints>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="center" drawsBackground="YES" id="IID-F8-SDm">
+                                                <font key="font" textStyle="largeTitle" name=".SFNS-Regular"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="AccentColor"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="2og-gW-ZLK" firstAttribute="centerX" secondItem="BsG-xb-qb3" secondAttribute="centerX" id="18p-su-wh9"/>
+                                        <constraint firstItem="4Cs-dw-2MY" firstAttribute="centerY" secondItem="BsG-xb-qb3" secondAttribute="centerY" id="F4R-nv-GWn"/>
+                                        <constraint firstItem="4Cs-dw-2MY" firstAttribute="centerX" secondItem="BsG-xb-qb3" secondAttribute="centerX" id="d81-1y-u3m"/>
+                                        <constraint firstItem="2og-gW-ZLK" firstAttribute="centerY" secondItem="BsG-xb-qb3" secondAttribute="centerY" constant="50" id="tm4-lc-pGZ"/>
+                                    </constraints>
+                                </view>
+                                <color key="fillColor" name="AccentColor"/>
+                            </box>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="4Cs-dw-2MY" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" constant="30" id="3fv-03-9rC"/>
-                            <constraint firstItem="2og-gW-ZLK" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="7Ur-rw-8Tf"/>
-                            <constraint firstItem="4Cs-dw-2MY" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="EK0-Tg-sJS"/>
-                            <constraint firstItem="7qP-NE-oR2" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" constant="-100" id="Fj0-Yk-VyU"/>
-                            <constraint firstItem="2og-gW-ZLK" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="S75-qH-tIY"/>
-                            <constraint firstItem="7qP-NE-oR2" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" constant="-175" id="eMX-Wg-RDM"/>
-                            <constraint firstItem="YDc-Q4-Dys" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" constant="180" id="k9r-yX-gae"/>
-                            <constraint firstItem="YDc-Q4-Dys" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" constant="100" id="xQH-OQ-vHK"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="analyticsButton" destination="7qP-NE-oR2" id="hH5-sa-QEa"/>
                         <outlet property="countdownLabel" destination="4Cs-dw-2MY" id="MNl-Ne-pRy"/>
                         <outlet property="toggleButton" destination="2og-gW-ZLK" id="TFM-gI-o8e"/>
                     </connections>
@@ -790,7 +779,7 @@
         <!--Analytics-->
         <scene sceneID="824-01-lAi">
             <objects>
-                <viewController title="Analytics" id="LLc-hZ-w6Z" customClass="UserDataViewController" customModule="TBD" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Analytics" id="LLc-hZ-w6Z" customClass="UserDataViewController" customModule="Aria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="0X7-KJ-aiG">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -901,4 +890,9 @@
             <point key="canvasLocation" x="791" y="655"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
