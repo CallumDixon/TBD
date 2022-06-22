@@ -25,12 +25,14 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var countdownLabel: NSTextField!
     @IBOutlet weak var toggleButton: NSButton!
+    @IBOutlet weak var analyticsButton: NSButton!
     
     required init?(coder code: NSCoder) {
         self.timer = Timer()
         workDuration = workDurationInMin * 60
         breakDuration = breakDurationInMin * 60
         countdown = breakDuration
+        print(AppDelegate.shared.userData.count)
         super.init(coder: code)
     }
     
@@ -62,14 +64,19 @@ class ViewController: NSViewController {
     }
     
     func lockScreen() {
+        
+        // The session for the app that was open before the lockout should be ended
+        AppDelegate.shared.endSession(currentSessionEndTime: Date.now)
+        
         let presOptions: NSApplication.PresentationOptions = [
             .hideDock,
             //.disableForceQuit
-            
         ]
         
         let optionsDictionary = [NSView.FullScreenModeOptionKey.fullScreenModeApplicationPresentationOptions: presOptions]
-                
+        
+        self.analyticsButton.isHidden = true
+        
         isInFullScreen = true
         for screen in NSScreen.screens {
             NSApp.setActivationPolicy(.accessory)
@@ -81,11 +88,18 @@ class ViewController: NSViewController {
     }
     
     func unLockScreen() {
+        
+        // A session for the app that was open before the lockout should be created. This function attempts that
+        if let name = NSWorkspace.shared.frontmostApplication?.localizedName{
+            AppDelegate.shared.startSession(name: name, newSessionStartTime: Date.now)
+        }
+            
         isInFullScreen = false
         NSApp.setActivationPolicy(.regular)
         self.view.exitFullScreenMode()
         toggleButton.isHidden = true
-        
+        self.analyticsButton.isHidden = false
+
         resetTimer()
     }
    
