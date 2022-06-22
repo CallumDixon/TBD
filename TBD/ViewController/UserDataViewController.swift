@@ -9,9 +9,38 @@ import Cocoa
 
 class UserDataViewController: NSViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do view setup here.
+    
+    @IBOutlet weak var tableView: NSTableView!
+    
+    required init?(coder code: NSCoder){
+        super.init(coder: code)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+}
+
+extension UserDataViewController: NSTableViewDataSource, NSTableViewDelegate{
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return AppDelegate.shared.userData.count
+    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        
+        if let userDataItem  = AppDelegate.shared.userData[row]{
+            
+            if tableColumn?.identifier == NSUserInterfaceItemIdentifier(rawValue: "IDText"){
+                
+                let cellIdentifier = NSUserInterfaceItemIdentifier(rawValue: "IDText")
+                guard let cellView = tableView.makeView(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView else {return nil}
+                cellView.textField?.stringValue = userDataItem.name
+                
+                return cellView
+            }
+        }
+            return nil
+        }
 }

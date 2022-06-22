@@ -7,7 +7,14 @@
 
 import Foundation
 
-struct UserData {
+struct UserData : Codable {
     let name: String
-    let time: DateInterval
+    let dateInterval: DateInterval
+    let time: Double
+    
+    init(name: String, dateInterval: DateInterval, time: Double){
+        self.name = name
+        self.dateInterval = dateInterval
+        self.time = time
+    }
 }

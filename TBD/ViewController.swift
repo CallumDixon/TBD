@@ -34,6 +34,7 @@ class ViewController: NSViewController {
         workDuration = workDurationInMin * 60
         breakDuration = breakDurationInMin * 60
         countdown = breakDuration
+        print(AppDelegate.shared.userData.count)
         super.init(coder: code)
     }
     
