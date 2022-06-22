@@ -12,7 +12,7 @@ class ViewController: NSViewController {
     
     var timer: Timer?
    
-    let workDurationInMin : Double = 0.2
+    let workDurationInMin : Double = 0.1
     let breakDurationInMin : Double = 0.05
     let workDuration : Double
     let breakDuration : Double
