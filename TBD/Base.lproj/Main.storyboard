@@ -754,11 +754,23 @@
                                                 <color key="backgroundColor" name="AccentColor"/>
                                             </textFieldCell>
                                         </textField>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7FI-64-QGA">
+                                            <rect key="frame" x="394" y="237" width="90" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Analytics" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3yD-bD-VAg">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <segue destination="LLc-hZ-w6Z" kind="show" id="Zba-BN-CQk"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="2og-gW-ZLK" firstAttribute="centerX" secondItem="BsG-xb-qb3" secondAttribute="centerX" id="18p-su-wh9"/>
                                         <constraint firstItem="4Cs-dw-2MY" firstAttribute="centerY" secondItem="BsG-xb-qb3" secondAttribute="centerY" id="F4R-nv-GWn"/>
+                                        <constraint firstItem="7FI-64-QGA" firstAttribute="centerX" secondItem="BsG-xb-qb3" secondAttribute="centerX" constant="200" id="L5Q-WJ-p2h"/>
                                         <constraint firstItem="4Cs-dw-2MY" firstAttribute="centerX" secondItem="BsG-xb-qb3" secondAttribute="centerX" id="d81-1y-u3m"/>
+                                        <constraint firstItem="7FI-64-QGA" firstAttribute="centerY" secondItem="BsG-xb-qb3" secondAttribute="centerY" constant="-120" id="fUB-OW-M03"/>
                                         <constraint firstItem="2og-gW-ZLK" firstAttribute="centerY" secondItem="BsG-xb-qb3" secondAttribute="centerY" constant="50" id="tm4-lc-pGZ"/>
                                     </constraints>
                                 </view>
@@ -767,6 +779,7 @@
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="analyticsButton" destination="7FI-64-QGA" id="nqE-Hp-kgC"/>
                         <outlet property="countdownLabel" destination="4Cs-dw-2MY" id="MNl-Ne-pRy"/>
                         <outlet property="toggleButton" destination="2og-gW-ZLK" id="TFM-gI-o8e"/>
                     </connections>

@@ -11,12 +11,12 @@ import AppKit
 final class UserDataInterfaceViewModel {
         
     var userData:[UserData?] = []
-    var foregroundApp: String?
-    var currentDateTime: Date
+    var currentSession: String?
+    var currentSessionStartTime: Date
     let userDataUserDefaultsKey = "TBDData"
     
     init(){
-        currentDateTime = Date.now
+        currentSessionStartTime = Date.now
         
         // Comment out to persist data between sessions
         removeUserDataAll()
@@ -28,25 +28,33 @@ final class UserDataInterfaceViewModel {
     
     @objc func foreGroundAppDidChange(){
         if let name = NSWorkspace.shared.frontmostApplication?.localizedName {
-            // The current application session has ended
-            // Therefore we retreive the current name, calculate the time elapsed and pass this to the addUserDateItem function
             
-            let newSessionDateTime = Date.now
+            let currentTime = Date.now
             
-            if let foregroundApp = self.foregroundApp {
-                
-                if foregroundApp != "TBD" {
-                    addUserDataItem(name: foregroundApp, dateInterval: DateInterval(start: currentDateTime, end: newSessionDateTime))
-
-                }
-            }
+            // End the current Session
+            endSession(currentSessionEndTime: currentTime)
              
-            // Sets the current foreground app and its start date/time
-            self.foregroundApp = name
-            self.currentDateTime = newSessionDateTime
+            // And start the new one
+            startSession(name: name, newSessionStartTime: currentTime)
             
-            let allUserData = getUserDataAll().compactMap{$0}
         }
+    }
+    
+    func endSession(currentSessionEndTime: Date){
+        
+        if let foregroundApp = self.currentSession {
+            
+            if foregroundApp != "Aria" {
+                addUserDataItem(name: foregroundApp, dateInterval: DateInterval(start: currentSessionStartTime, end: currentSessionEndTime))
+
+            }
+        }
+    }
+    
+    func startSession(name: String, newSessionStartTime: Date){
+        
+        self.currentSession = name
+        self.currentSessionStartTime = newSessionStartTime
     }
     
     func getUserDataAll() -> [UserData?]{
