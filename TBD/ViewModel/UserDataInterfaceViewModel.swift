@@ -34,7 +34,11 @@ final class UserDataInterfaceViewModel {
             let newSessionDateTime = Date.now
             
             if let foregroundApp = self.foregroundApp {
-                addUserDataItem(name: foregroundApp, dateInterval: DateInterval(start: currentDateTime, end: newSessionDateTime))
+                
+                if foregroundApp != "TBD" {
+                    addUserDataItem(name: foregroundApp, dateInterval: DateInterval(start: currentDateTime, end: newSessionDateTime))
+
+                }
             }
              
             // Sets the current foreground app and its start date/time
@@ -42,7 +46,6 @@ final class UserDataInterfaceViewModel {
             self.currentDateTime = newSessionDateTime
             
             let allUserData = getUserDataAll().compactMap{$0}
-            //print(allUserData)
         }
     }
     

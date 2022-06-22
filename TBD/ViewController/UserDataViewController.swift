@@ -37,9 +37,16 @@ extension UserDataViewController: NSTableViewDataSource, NSTableViewDelegate{
                 let cellIdentifier = NSUserInterfaceItemIdentifier(rawValue: "IDText")
                 guard let cellView = tableView.makeView(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView else {return nil}
                 cellView.textField?.stringValue = userDataItem.name
-                
                 return cellView
             }
+            
+            if tableColumn?.identifier == NSUserInterfaceItemIdentifier(rawValue: "IDDuration"){
+                
+                let cellIdentifier = NSUserInterfaceItemIdentifier(rawValue: "IDDuration")
+                guard let cellView = tableView.makeView(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView else {return nil}
+                cellView.textField?.doubleValue = userDataItem.time
+                return cellView
+            } 
         }
             return nil
         }
