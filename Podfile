@@ -1,9 +1,10 @@
 # Podfile
 use_frameworks!
 
-target 'TBD' do
+target 'Aria' do
     pod 'RxSwift', '6.5.0'
     pod 'RxCocoa', '6.5.0'
+    pod 'Charts', '4.0.3'
 end
 
 

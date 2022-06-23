@@ -764,13 +764,41 @@
                                                 <segue destination="LLc-hZ-w6Z" kind="show" id="Zba-BN-CQk"/>
                                             </connections>
                                         </button>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Swe-ED-JVO">
+                                            <rect key="frame" x="312" y="225" width="152" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="150" id="fyw-f4-YKH"/>
+                                                <constraint firstAttribute="height" constant="16" id="o4p-wT-w4j"/>
+                                            </constraints>
+                                            <buttonCell key="cell" type="check" title="Opt in/out Analytics" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ULc-9g-PNB">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dkh-0Y-3gB">
+                                            <rect key="frame" x="312" y="195" width="152" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="eVY-vI-Rha"/>
+                                                <constraint firstAttribute="height" constant="16" id="iwM-GL-0QG"/>
+                                                <constraint firstAttribute="width" constant="150" id="pPY-Kg-Pr5"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="qJa-5a-UfC"/>
+                                            </constraints>
+                                            <buttonCell key="cell" type="check" title="Opt in/out Locking" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="pbu-bT-evi">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="2og-gW-ZLK" firstAttribute="centerX" secondItem="BsG-xb-qb3" secondAttribute="centerX" id="18p-su-wh9"/>
+                                        <constraint firstItem="Swe-ED-JVO" firstAttribute="centerX" secondItem="BsG-xb-qb3" secondAttribute="centerX" constant="150" id="3Cp-Yw-Qqy"/>
+                                        <constraint firstItem="dkh-0Y-3gB" firstAttribute="centerY" secondItem="BsG-xb-qb3" secondAttribute="centerY" constant="-70" id="9sC-Im-Vdc"/>
                                         <constraint firstItem="4Cs-dw-2MY" firstAttribute="centerY" secondItem="BsG-xb-qb3" secondAttribute="centerY" id="F4R-nv-GWn"/>
+                                        <constraint firstItem="dkh-0Y-3gB" firstAttribute="centerX" secondItem="BsG-xb-qb3" secondAttribute="centerX" constant="150" id="JRr-zv-NqW"/>
                                         <constraint firstItem="7FI-64-QGA" firstAttribute="centerX" secondItem="BsG-xb-qb3" secondAttribute="centerX" constant="200" id="L5Q-WJ-p2h"/>
                                         <constraint firstItem="4Cs-dw-2MY" firstAttribute="centerX" secondItem="BsG-xb-qb3" secondAttribute="centerX" id="d81-1y-u3m"/>
                                         <constraint firstItem="7FI-64-QGA" firstAttribute="centerY" secondItem="BsG-xb-qb3" secondAttribute="centerY" constant="-120" id="fUB-OW-M03"/>
+                                        <constraint firstItem="Swe-ED-JVO" firstAttribute="centerY" secondItem="BsG-xb-qb3" secondAttribute="centerY" constant="-100" id="rNu-qw-ax8"/>
                                         <constraint firstItem="2og-gW-ZLK" firstAttribute="centerY" secondItem="BsG-xb-qb3" secondAttribute="centerY" constant="50" id="tm4-lc-pGZ"/>
                                     </constraints>
                                 </view>
@@ -892,10 +920,15 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UeO-jM-q4z" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="508" y="93" width="272" height="228"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="iW8-B9-gae" id="hNX-jB-Py1"/>
+                        <outlet property="userDataPieChartView" destination="UeO-jM-q4z" id="GnO-LU-PDC"/>
                     </connections>
                 </viewController>
                 <customObject id="Qz5-wu-Rlt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

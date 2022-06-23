@@ -6,11 +6,13 @@
 //
 
 import Cocoa
+import Charts
 
 class UserDataViewController: NSViewController {
 
     
     @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet weak var userDataPieChartView: PieChartView!
     
     required init?(coder code: NSCoder){
         super.init(coder: code)
@@ -20,6 +22,43 @@ class UserDataViewController: NSViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        
+        
+        var entries : [PieChartDataEntry] = Array()
+        
+        for data in AppDelegate.shared.userData {
+            
+            if let row = entries.firstIndex(where: {$0.label == data?.name}){
+                
+                if let time = data?.time{
+                    entries[row].value += time
+                }
+            }
+            
+            else {
+                
+                if let time = data?.time{
+                    entries.append(PieChartDataEntry(value: time, label: data?.name))
+                }
+            }
+        }
+        
+        entries = entries.sorted(by: {$0.value > $1.value})
+        entries = Array(entries.prefix(5))
+        
+                
+        
+       let dataSet = PieChartDataSet(entries: entries, label : "This shows the 5 apps you spend the most time in.")
+        
+        dataSet.colors = [NSUIColor(ciColor: .red), NSUIColor(ciColor: .blue), NSUIColor(ciColor: .green), NSUIColor(ciColor: .yellow), NSUIColor(ciColor: .magenta)]
+        dataSet.valueColors =  [NSUIColor(ciColor: .black),NSUIColor(ciColor: .black),NSUIColor(ciColor: .black),NSUIColor(ciColor: .black),NSUIColor(ciColor: .black)]
+        dataSet.drawValuesEnabled = true
+
+        
+        userDataPieChartView.data = PieChartData(dataSet: dataSet)
+
+
     }
 }
 
